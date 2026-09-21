@@ -1,0 +1,8 @@
+[phases.setup]
+nixPkgs = ["jdk", "gcc"]
+
+[phases.build]
+cmds = ["npm install --omit=dev", "bash build-interpreters.sh"]
+
+[start]
+cmd = "node server.js"
