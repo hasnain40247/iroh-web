@@ -1,0 +1,10 @@
+// len result used in arithmetic
+serve len("ab") + len([1, 2, 3]);
+
+// len result used in comparison
+brew nums = [1, 2, 3, 4];
+serve len(nums) * 2;
+
+// assigned to a variable
+brew n = len("hello");
+serve n + 1;

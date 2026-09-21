@@ -1,0 +1,4 @@
+brew words = ["brew", "leaf", "craft", "offer"];
+serve len(words);
+
+serve len(["only"]);

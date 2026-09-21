@@ -1,0 +1,106 @@
+
+
+// ── 2. LIST LITERALS + INDEX ACCESS ──────────────────────────────────────────
+brew nums = [10, 20, 30, 40, 50];
+serve nums[0];   // 10
+serve nums[2];   // 30
+serve nums[4];   // 50
+
+nums[1] = 99;
+serve nums[1];   // 99
+
+brew words = ["brew", "leaf", "craft"];
+serve words[0];  // brew
+serve words[2];  // craft
+
+// list literal passed directly to a function
+craft first(lst) {
+  offer lst[0];
+}
+serve first([7, 8, 9]); // 7
+
+
+// ── 3. ANONYMOUS FUNCTIONS ────────────────────────────────────────────────────
+brew add = craft(a, b) { offer a + b; };
+serve add(3, 4);   // 7
+
+brew square = craft(n) { offer n * n; };
+serve square(5);   // 25
+
+// passed as argument
+craft apply(fn, val) {
+  offer fn(val);
+}
+serve apply(craft(n) { offer n * 2; }, 6);  // 12
+
+// returned from a function
+craft makeAdder(n) {
+  offer craft(x) { offer x + n; };
+}
+brew addFive = makeAdder(5);
+serve addFive(10);  // 15
+serve addFive(3);   // 8
+
+
+// ── 4. STATIC METHODS ─────────────────────────────────────────────────────────
+leaf MathUtils {
+  leaf square(n) {
+    offer n * n;
+  }
+  leaf max(a, b) {
+    offer a > b ? a : b;
+  }
+}
+
+serve MathUtils.square(6);   // 36
+serve MathUtils.max(10, 3);  // 10
+
+leaf Counter {
+  leaf create(start) {
+    offer Counter(start);
+  }
+  init(n) {
+    stem.n = n;
+  }
+  value() {
+    offer stem.n;
+  }
+}
+
+brew c = Counter.create(42);
+serve c.value(); // 42
+
+
+// ── 5. PROPERTY GETTERS ───────────────────────────────────────────────────────
+leaf Circle {
+  init(r) {
+    stem.r = r;
+  }
+  area {
+    offer 3.14159 * stem.r * stem.r;
+  }
+  diameter {
+    offer stem.r * 2;
+  }
+}
+
+brew circle = Circle(5);
+serve circle.area;      // 78.53975
+serve circle.diameter;  // 10
+
+leaf Rectangle {
+  init(w, h) {
+    stem.w = w;
+    stem.h = h;
+  }
+  area {
+    offer stem.w * stem.h;
+  }
+  perimeter {
+    offer 2 * (stem.w + stem.h);
+  }
+}
+
+brew rect = Rectangle(4, 6);
+serve rect.area;      // 24
+serve rect.perimeter; // 20

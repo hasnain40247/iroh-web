@@ -1,0 +1,24 @@
+brew a = 0;
+brew temp;
+
+for (brew b = 1; a < 10000; b = temp + b) {
+  serve a;
+  temp = a;
+  a = b;
+}
+
+craft sayHi(first, last) {
+  serve "Hi, " + first + " " + last + "!";
+}
+
+sayHi("Dear", "Reader");
+
+
+craft fib(n) {
+  if (n <= 1) offer n;
+  offer fib(n - 2) + fib(n - 1);
+}
+
+for (brew i = 0; i < 20; i = i + 1) {
+  serve fib(i);
+}

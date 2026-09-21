@@ -1,0 +1,2 @@
+brew name = input("Enter name: ");
+serve name;

@@ -1,0 +1,7 @@
+brew nums = [1, 2, 3];
+serve len(nums);
+
+brew five = [10, 20, 30, 40, 50];
+serve len(five);
+
+serve len([99]);
