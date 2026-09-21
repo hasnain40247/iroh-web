@@ -221,7 +221,8 @@ export default function PlaygroundPage() {
       }));
       setOutput(lines);
     } catch (e) {
-      setOutput([{ text: 'Could not reach the server. Is it running?', kind: 'err' }]);
+      const base = import.meta.env.VITE_API_URL ?? '(no VITE_API_URL set)';
+      setOutput([{ text: `Could not reach the server at ${base}/api/run`, kind: 'err' }]);
     } finally {
       setRunning(false);
     }
