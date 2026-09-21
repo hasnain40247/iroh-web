@@ -20,20 +20,7 @@ const C_BIN = existsSync(join(__dirname, 'ciroh-src', 'ciroh'))
   : join(__dirname, '..', 'cIroh', 'ciroh');
 
 const app = express();
-app.use(cors({
-  origin: (origin, cb) => {
-    if (
-      !origin ||
-      /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin) ||
-      /\.vercel\.app$/.test(origin) ||
-      /\.railway\.app$/.test(origin)
-    ) {
-      cb(null, true);
-    } else {
-      cb(new Error('CORS: not allowed'));
-    }
-  },
-}));
+app.use(cors());
 app.use(express.json({ limit: '512kb' }));
 
 app.post('/api/run', (req, res) => {
