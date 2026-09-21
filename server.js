@@ -22,8 +22,12 @@ const C_BIN = existsSync(join(__dirname, 'ciroh-src', 'ciroh'))
 const app = express();
 app.use(cors({
   origin: (origin, cb) => {
-    // allow any localhost origin (any port) or no origin (same-origin/curl)
-    if (!origin || /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin)) {
+    if (
+      !origin ||
+      /^https?:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/.test(origin) ||
+      /\.vercel\.app$/.test(origin) ||
+      /\.railway\.app$/.test(origin)
+    ) {
       cb(null, true);
     } else {
       cb(new Error('CORS: not allowed'));
