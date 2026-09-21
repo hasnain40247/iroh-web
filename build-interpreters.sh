@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-set -e
 
 echo "=== Compiling Java interpreter ==="
 find interpreter -name "*.java" | xargs javac -d interpreter

@@ -64,6 +64,7 @@ app.post('/api/run', (req, res) => {
 
 app.get('/api/health', (_req, res) => res.json({ ok: true }));
 
-app.listen(3001, () => {
-  console.log('Iroh API server → http://localhost:3001');
+const PORT = process.env.PORT || 3001;
+app.listen(PORT, () => {
+  console.log(`Iroh API server → http://localhost:${PORT}`);
 });
