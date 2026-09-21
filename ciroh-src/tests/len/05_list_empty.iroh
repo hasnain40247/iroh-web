@@ -1,0 +1,4 @@
+brew empty_list = [];
+serve len(empty_list);
+
+serve len([]);

@@ -10,9 +10,14 @@ import { dirname } from 'path';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
-const IROH_ROOT = join(__dirname, '..');
-const JAVA_CP   = join(IROH_ROOT, 'interpreter', 'src');
-const C_BIN     = join(IROH_ROOT, 'cIroh', 'ciroh');
+// In dev: interpreters live one level up. In production (Railway): bundled inside repo.
+const JAVA_CP = existsSync(join(__dirname, 'interpreter'))
+  ? join(__dirname, 'interpreter')
+  : join(__dirname, '..', 'interpreter', 'src');
+
+const C_BIN = existsSync(join(__dirname, 'ciroh-src', 'ciroh'))
+  ? join(__dirname, 'ciroh-src', 'ciroh')
+  : join(__dirname, '..', 'cIroh', 'ciroh');
 
 const app = express();
 app.use(cors({

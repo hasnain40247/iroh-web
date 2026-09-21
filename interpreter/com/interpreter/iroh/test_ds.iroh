@@ -1,0 +1,156 @@
+serve "=== LIST TEST ===";
+
+brew a = [1, 2, 3];
+a.push(4);
+serve a;
+serve a.pop();
+serve a;
+serve a.size;
+
+
+serve "=== STACK TEST ===";
+
+brew stack = [];
+stack.push("x");
+stack.push("y");
+stack.push("z");
+
+serve stack.pop();
+serve stack.pop();
+serve stack.pop();
+
+
+serve "=== QUEUE TEST ===";
+
+brew q = Queue();
+q.enqueue(1);
+q.enqueue(2);
+q.enqueue(3);
+
+serve q.dequeue();
+serve q.dequeue();
+q.enqueue(4);
+q.enqueue(5);
+serve q.dequeue();
+serve q.dequeue();
+serve q.dequeue();
+serve q.size;
+
+
+serve "=== MAP TEST ===";
+
+brew m = Map();
+
+m.set("a", 10);
+m.set("b", 20);
+m.set("c", 30);
+
+serve m.get("a");
+serve m.get("b");
+
+m.set("a", 100);
+serve m.get("a");
+
+serve m.size;
+
+
+serve "=== MIXED REFERENCE TEST ===";
+
+brew x = [9, 8];
+brew y = x;
+
+y.push(7);
+x.push(6);
+
+serve x;
+serve y;
+
+brew mm = Map();
+mm.set("k", x);
+serve mm.get("k");
+
+x.push(5);
+serve mm.get("k"); 
+
+
+serve "\n\n";
+
+serve "=== LINKED LIST TEST ===";
+
+// Node definition
+leaf Node {
+  init(value, link) {
+    stem.value = value;
+    stem.link = link;
+  }
+}
+
+// LinkedList wrapper
+leaf LinkedList {
+  init() {
+    stem.head = empty;
+  }
+
+  pushFront(value) {
+    stem.head = Node(value, stem.head);
+  }
+
+  popFront() {
+    if (stem.head == empty) offer empty;
+
+    brew val = stem.head.value;
+    stem.head = stem.head.continue;
+    offer val;
+  }
+
+  size() {
+    brew count = 0;
+    brew curr = stem.head;
+
+    while (curr != empty) {
+      count = count + 1;
+      curr = curr.link;
+    }
+
+    offer count;
+  }
+
+  printList() {
+    brew curr = stem.head;
+    while (curr != empty) {
+      serve curr.value;
+      curr = curr.link;
+    }
+  }
+}
+
+
+// ===== TESTS =====
+
+brew list = LinkedList();
+
+serve list.size(); // 0
+
+list.pushFront(3);
+list.pushFront(2);
+list.pushFront(1);
+
+serve "List contents:";
+list.printList();  // 1, 2, 3
+
+serve list.size(); // 3
+
+serve list.popFront(); // 1
+serve list.popFront(); // 2
+
+serve "After pops:";
+list.printList(); // 3
+
+serve list.size(); // 1
+
+serve list.popFront(); // 3
+serve list.popFront(); // empty
+
+serve list.size(); // 0
+
+brew b=input("hello");

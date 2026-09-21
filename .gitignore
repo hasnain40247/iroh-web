@@ -2,3 +2,7 @@ node_modules/
 dist/
 .DS_Store
 *.local
+
+# compiled interpreter artefacts (built on server)
+interpreter/**/*.class
+ciroh-src/ciroh

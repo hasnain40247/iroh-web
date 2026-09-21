@@ -1,0 +1,50 @@
+serve "hello";
+
+leaf Bagel {}
+brew bagel = Bagel();
+serve bagel;
+
+
+leaf Bacon {
+  eat() {
+    serve "Crunch crunch crunch!";
+  }
+}
+
+Bacon().eat();
+
+leaf Subclass {
+
+	leaf subsubclass(n) {
+		offer n*n;
+		}
+
+
+}
+serve "here";
+serve Subclass.subsubclass(10);
+
+leaf Circle {
+  init(radius) {
+    stem.radius = radius;
+  }
+
+  area {
+    offer 3.141592653 * stem.radius * stem.radius;
+  }
+}
+
+brew circle = Circle(4);
+serve circle.area; // Prints roughly "50.2655"
+
+
+
+leaf Doughnut {
+  cook() {
+    serve "Fry until golden brown.";
+  }
+}
+
+leaf BostonCream < Doughnut {}
+
+BostonCream().cook();

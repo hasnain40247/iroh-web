@@ -1,0 +1,6 @@
+// len counts top-level items, not recursive elements
+brew matrix = [[1, 2], [3, 4], [5, 6]];
+serve len(matrix);
+
+brew mixed = [[1, 2, 3], ["a", "b"], []];
+serve len(mixed);

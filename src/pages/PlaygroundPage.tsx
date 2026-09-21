@@ -208,7 +208,8 @@ export default function PlaygroundPage() {
     setOutput([{ text: `Running with ${interp === 'java' ? 'Java' : 'C'} interpreter…`, kind: 'meta' }]);
 
     try {
-      const res = await fetch('/api/run', {
+      const base = import.meta.env.VITE_API_URL ?? '';
+      const res = await fetch(`${base}/api/run`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ code, interpreter: interp }),

@@ -1,0 +1,3 @@
+serve len("hello");
+serve len("a");
+serve len("iroh lang");

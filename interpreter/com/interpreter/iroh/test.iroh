@@ -1,0 +1,36 @@
+/* stem is an iroh comment */
+/* stem is a multiline 
+comment for iroh */
+
+serve "i am an iroh program";
+brew a="hello";
+brew b="moto";
+serve a+b;
+
+/* stem  part tests out scopes */
+
+brew a = "global a";
+brew b = "global b";
+brew c = "global c";
+{
+  brew a = "outer a";
+  brew b = "outer b";
+  {
+    brew a = "inner a";
+    serve a;
+    serve b;
+    serve c;
+  }
+  serve a;
+  serve b;
+  serve c;
+}
+serve a;
+serve b;
+serve c;
+
+brew a = 1;
+{
+  brew a = a + 2;
+  serve a;
+}

@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "build:interpreters": "bash build-interpreters.sh",
     "dev": "concurrently -k -n server,vite -c cyan,magenta \"node server.js\" \"vite\"",
     "server": "node server.js",
     "client": "vite",
