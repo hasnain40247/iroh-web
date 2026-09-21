@@ -1,4 +1,4 @@
-FROM node:20-bullseye
+FROM node:20-bookworm
 
 RUN apt-get update && apt-get install -y default-jdk gcc make && rm -rf /var/lib/apt/lists/*
 
