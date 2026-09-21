@@ -1,6 +1,10 @@
-FROM node:20-bookworm
+FROM eclipse-temurin:21-jdk-noble
 
-RUN apt-get update && apt-get install -y default-jdk gcc make && rm -rf /var/lib/apt/lists/*
+# Install Node.js 20 and GCC
+RUN apt-get update && apt-get install -y curl gcc make && \
+    curl -fsSL https://deb.nodesource.com/setup_20.x | bash - && \
+    apt-get install -y nodejs && \
+    rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
 
@@ -12,7 +16,7 @@ COPY interpreter ./interpreter
 COPY ciroh-src ./ciroh-src
 COPY build-interpreters.sh ./
 
-RUN bash build-interpreters.sh || echo "Interpreter build warnings (non-fatal)"
+RUN bash build-interpreters.sh || true
 
 EXPOSE 3001
 CMD ["node", "server.js"]
